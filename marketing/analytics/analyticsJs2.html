@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+    </header>
+    <button id="btn">Сохранить</button>
+    <section>
+    </section>
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        var ddd = 1;
+        var getJsonSwot;
+        var requestURL = 'https://innovations.kh.ua/mse/analytics/back/analyticsOut2.php';
+        var request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            getJsonSwot = request.response;
+            console.log(getJsonSwot);
+            swotCreate(getJsonSwot);
+        }
+
+        var types = ['Сильные стороны', 'Слабые стороны', 'Возможности', 'Угрозы'];
+        var lens = Array();
+
+
+
+        function swotCreate(jsonObj) {
+            console.log(jsonObj[0][0].description);
+            var flag = 0;
+            // var list = array();
+            let k = 0;
+            for (let i = 0; i < jsonObj.length; i++) { //Под стандартный SWOT = 4
+                lens[i] = jsonObj[i].length;
+
+                let h2 = document.createElement('h2');
+                h2.textContent = types[i];
+                header.appendChild(h2);
+
+                let di = document.createElement('div');
+                di.className = 'i' + i;
+                header.appendChild(di);
+                for (let j = 0; j < jsonObj[i].length; j++) { //сделать функцию добавления элемента + счет элементов должен идти отдельно
+                    let d1 = document.createElement('div');
+                    d1.id = "block-"+i+"-"+j;
+                    let l1 = document.createElement('label');
+                    l1.textContent = jsonObj[i][j].id;
+                    let i1 = document.createElement('input');
+                    i1.id = "i" + jsonObj[i][j].id;
+                    i1.value = jsonObj[i][j].description;
+                    i1.setAttribute('di', jsonObj[i][j].id)
+                    i1.setAttribute('nn', jsonObj[i][j].n)
+                    let i2 = document.createElement('input');
+                    i2.id = "p" + jsonObj[i][j].id;
+                    i2.value = jsonObj[i][j].priority;
+                    let btnminus = document.createElement("button");
+                    btnminus.id = "btnminus"+jsonObj[i][j].id
+                    btnminus.innerText = "-";
+                    btnminus.className = "btnminus";
+                    btnminus.setAttribute("place",i+"-"+j);
+                    //setAttribute
+
+                    d1.appendChild(l1);
+                    d1.appendChild(i1);
+                    d1.appendChild(i2);
+                    d1.appendChild(btnminus);
+                    di.appendChild(d1);
+                }
+                var addBtn = document.createElement("button");
+                addBtn.setAttribute("place","place-"+i);
+                addBtn.innerText = "+";
+                addBtn.id = "addBtn" + i;
+                addBtn.className = "addBtn";
+                header.appendChild(addBtn);
+            }
+            console.log('k= ', k);
+            
+            addBtns = document.getElementsByClassName('addBtn');
+            for (let i=0;i<addBtns.length;i++){
+                addBtns[i].addEventListener("click", addBtnFnc);
+            }
+
+            btnminuses = document.getElementsByClassName("btnminus");
+           // btnminuses.addEventListener("click",btnminusesFnc);
+            console.log(btnminuses[0]);
+            for (let i=0;i<btnminuses.length;i++){
+                btnminuses[i].addEventListener("click",btnminusesFnc);
+            }
+        }
+
+        function btnminusesFnc(event){
+            let elem = event.target;
+            let place = elem.getAttribute("place");
+            let places = place.split("-");
+            console.log(places);
+            let elm = document.getElementById("block-"+places[0]+"-"+places[1]);
+            elm.parentNode.removeChild(elm);
+            lens[places[0]]--;
+        }
+
+        function addBtnFnc(event) {
+            let elem = event.target;
+            console.log(elem);
+            let place = elem.getAttribute("place");
+            console.log(place);
+            let places = place.split("-");
+            let pls = places[1];
+            console.log(pls);
+            let dddsName = 'i'+pls;
+            console.log(pls);
+            let ddds = document.getElementsByClassName('i'+pls);
+            console.log(ddds);
+            let ddd = ddds[0];
+
+            var d1 = document.createElement('div');
+            var l1 = document.createElement('label');
+            l1.textContent = 3;
+            var i1 = document.createElement('input');
+            i1.id = "i" + places[1];
+            i1.value = "";
+            i1.setAttribute('di', 3)
+            i1.setAttribute('nn', places[1])
+            var i2 = document.createElement('input');
+            i2.id = "p" + 3;
+            i2.value = "";
+
+            d1.appendChild(l1);
+            d1.appendChild(i1);
+            d1.appendChild(i2);
+            ddd.appendChild(d1);
+
+            lens[places[1]]++;
+        }
+
+
+        function addBtnFnc2() {
+            console.log('addBtnFnc2');
+        }
+
+        function addBtnFnc3() {
+            console.log('addBtnFnc3');
+        }
+
+        function addBtnFnc4() {
+            console.log('addBtnFnc4');
+        }
+
+
+
+        btn.addEventListener("click", fnc);
+
+
+
+        function fnc() {
+            /*Get SWOT*/
+            var swotlines = Array();
+            console.log("---");
+            console.log(lens);
+            for (let i = 0; i < 4; i++) {
+                let swotline = Array();
+                for (let j = 0; j < lens[i]; j++) {
+                    let k = j + 1;
+                    let elem = document.querySelector('.i' + i + ' div:nth-child(' + k + ') input:nth-child(2)');
+                    console.log(elem);
+
+                    let description = elem.value;
+                    let type = elem.getAttribute('tpe');
+                    let di = elem.getAttribute('di');
+                    let nn = elem.getAttribute('nn');
+
+                    elem = document.querySelector('.i' + i + ' div:nth-child(' + k + ') input:nth-child(3)');
+                    let priority = elem.value;
+
+                    var swotelem = {
+                        id: di,
+                        type: type,
+                        n: nn,
+                        description: description,
+                        priority: priority
+                    };
+                    swotline.push(swotelem);
+
+                }
+                swotlines.push(swotline);
+            }
+            console.log(swotlines);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'back/analyticsIn2.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('param=' + JSON.stringify(swotlines));
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        console.log(xhr.responseText);
+                    } else {
+                        console.log('ajax error');
+                    }
+                }
+            };
+
+            console.log("send Data");
+        }
+    </script>
+    <!--Большая детализация, первый проход - добавляем как основание для работы-->
+  
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

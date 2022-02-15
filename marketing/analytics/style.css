@@ -1,0 +1,37 @@
+.analys::before {
+    content: "Анализ";
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.strategy::before {
+    content: "Стратегия";
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.processes::before {
+    content: "Процессы";
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.resourses::before {
+    content: "Ресурсы";
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.managment::before {
+    content: "Управление";
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}
+header{
+
+}

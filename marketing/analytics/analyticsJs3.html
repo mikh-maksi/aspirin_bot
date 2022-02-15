@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>Направления деятельности</h2>
+    <header>
+        <div id="strength"></div>
+        <div id="strongs"></div>
+        <textarea name="" id="waysArea" cols="30" rows="3"></textarea>
+        <button id = "btnWays">Добавить</button>
+        <h2>Реакция на угрозы</h2>
+        <div id="threats"></div>
+        <textarea name="" id="" cols="30" rows="3"></textarea>
+        <button id = "btnThreats">Добавить</button>
+
+        <h2>Реакция на слабые стороны</h2>
+        <div id="weaknesses"></div>
+        <textarea name="" id="" cols="30" rows="3"></textarea>
+        <button id = "btnWeaknesses">Добавить</button>
+    </header>
+
+    <section>
+        <span>Возможность 1</span><span>Сильная сторона 1</span><span>Описание</span>
+    </section>
+
+
+
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+
+        var requestURL = 'https://innovations.kh.ua/mse/analytics/back/analyticsOut2.php';
+
+        var request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            var swot = request.response;
+            console.log(threats);
+            swotConclusions(swot);
+        }
+        function swotConclusions(swot){
+            console.log(swot);
+            for (let i=0;i<swot[0].length;i++){
+                let ddd = document.createElement("div");
+                let chkbx = document.createElement("input");
+                chkbx.type = "checkbox";
+                
+                let spn = document.createElement("span");
+                spn.innerText=swot[0][i].description;
+                ddd.appendChild(chkbx);
+                ddd.appendChild(spn);
+                
+                strongs.appendChild(ddd);
+            }
+            for (let i=0;i<swot[2].length;i++){
+                let ddd = document.createElement("div");
+                let chkbx = document.createElement("input");
+                chkbx.type = "checkbox";
+                
+                let spn = document.createElement("span");
+                spn.innerText=swot[2][i].description;
+                ddd.appendChild(chkbx);
+                ddd.appendChild(spn);
+                
+                strength.appendChild(ddd);
+            }
+
+            for (let i=0;i<swot[3].length;i++){
+                let ddd = document.createElement("div");
+                let chkbx = document.createElement("input");
+                chkbx.type = "checkbox";
+                
+                let spn = document.createElement("span");
+                spn.innerText=swot[3][i].description;
+                ddd.appendChild(chkbx);
+                ddd.appendChild(spn);
+                
+                threats.appendChild(ddd);
+            }
+
+            for (let i=0;i<swot[1].length;i++){
+                let ddd = document.createElement("div");
+                let chkbx = document.createElement("input");
+                chkbx.type = "checkbox";
+                
+                let spn = document.createElement("span");
+                spn.innerText=swot[1][i].description;
+                ddd.appendChild(chkbx);
+                ddd.appendChild(spn);
+                
+                weaknesses.appendChild(ddd);
+            }
+        }
+
+
+        function swotCreate(jsonObj) {
+            console.log(jsonObj.length);
+            var flag = 0;
+            for (var i = 0; i < jsonObj.length; i++) {
+                if (flag != jsonObj[i].type) {
+                    flag = jsonObj[i].type;
+                    var h2 = document.createElement('h2');
+                    h2.textContent = flag;
+                    header.appendChild(h2);
+                }
+                var d1 = document.createElement('div');
+                var l1 = document.createElement('label');
+                l1.textContent = jsonObj[i].id;
+                var i1 = document.createElement('input');
+                i1.id = "i" + jsonObj[i].id;
+                i1.value = jsonObj[i].description;
+
+                var i2 = document.createElement('input');
+                i2.id = "p" + jsonObj[i].id;
+                i2.value = jsonObj[i].priority;
+
+                d1.appendChild(l1);
+                d1.appendChild(i1);
+                d1.appendChild(i2);
+                header.appendChild(d1);
+            }
+
+        }
+        btnWays.addEventListener("click", btnWaysFnc);
+        btnThreats.addEventListener("click", btnThreatsFnc);
+        btnWeaknesses.addEventListener("click", btnWeaknessesFnc);
+//получить те элементы, которые checked, очистить
+        function btnWaysFnc(){
+            //объект
+            let elem = document.querySelectorAll("#strength div input");
+            console.log(elem);
+            let strengthArr = Array();
+            for (let i=0;i<elem.length;i++){
+                console.log(elem[i].checked);
+                if (elem[i].checked)
+                strengthArr.push(i);
+            }
+            console.log(strengthArr);
+
+            elem = document.querySelectorAll("#strongs div input");
+            let strongsArr = Array();
+            for (let i=0;i<elem.length;i++){
+                console.log(elem[i].checked);
+                if (elem[i].checked)
+                strongsArr.push(i);
+            }
+            console.log(strongsArr);
+
+            waysDescr = waysArea.value;
+
+            console.log(waysDescr);
+
+            let waysObj ={
+                strength: strengthArr,
+                strongs: strongsArr,
+                description: waysDescr
+            }
+            console.log(waysObj);
+            let  waysObjs = Array();
+            waysObjs.push(waysObj);
+            waysObjs.push(waysObj);
+            console.log(waysObjs);
+        }
+
+        function btnThreatsFnc(){
+            let threatsObj ={
+                threats: [1],
+                description:"description"
+            }
+            let  threatsObjs = Array();
+            threatsObjs.push(threatsObj);
+            threatsObjs.push(threatsObj);
+            console.log(threatsObjs);
+            console.log("btnThreats");
+        }
+
+        function btnWeaknessesFnc(){
+            let weaknessesObj ={
+                weaknesses: [1],
+                description:"description"
+            }
+            let  weaknessesObjs = Array();
+            weaknessesObjs.push(weaknessesObj);
+            weaknessesObjs.push(weaknessesObj);
+            console.log(weaknessesObjs);
+            console.log("btnThreats");
+            console.log("btnWeaknesses");
+        }
+
+
+        function fnc() {
+            /*Get SWOT*/
+
+           
+
+            var someObj = {
+                a: 1,
+                b: 2
+            };
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'back/analyticsIn2.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('param=' + JSON.stringify(someObj));
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        console.log(xhr.responseText);
+                    } else {
+                        console.log('ajax error');
+                    }
+                }
+            };
+
+
+
+
+            console.log("send Data");
+        }
+    </script>
+
+
+
+    <!--Большая детализация, первый проход - добавляем как основание для работы-->
+    <div class="simple">
+        <div class="analys">
+
+        </div>
+        <div class="swotplus">
+           
+          
+        </div>
+        <button id="send">Сохранить</button>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

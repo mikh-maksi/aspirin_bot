@@ -1,0 +1,32 @@
+SELECT count(id) FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = .
+.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"1","p":"2","r":"2","n":"1","turnover":"23","nstaf":"5"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"4","s":"4","p":"4","r":"4","n":"4","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"3","p":"2","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"2","p":"2","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 9.
+Максимов.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"2","p":"2","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"4","s":"2","p":"2","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"2","p":"4","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.
+SELECT count(id) AS n FROM aspirinjson WHERE orgId = 1.
+Максимов Михайло Сергійович.
+UPDATE aspirinjson SET json ='{"id":"1","name":"Максимов Михайло Сергійович","adress":"м. Харків, вул. Пермська, 11, кв.93","inn":"3132406950","bankAccount":"","stateReg":"","phone":"","email":"","dbIN":null,"a":"2","s":"2","p":"1","r":"3","n":"2","turnover":"1000","nstaf":"249"}' WHERE orgId = 1.

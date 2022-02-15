@@ -1,0 +1,110 @@
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inpt div span {
+    display: inline-block;
+    width: 300px;
+}
+
+.dbtn,
+.inpt div {
+    text-align: center;
+}
+
+.elements .hide,
+.hide {
+    display: none;
+}
+
+#statmnt {
+    width: 400px;
+    font-size: 12px;
+}
+
+#div span {
+    width: 200px;
+}
+
+.imgdoc {
+    width: 300px;
+}
+
+.color1 {
+    background: red;
+}
+
+.color2 {
+    background: yellow;
+}
+
+.color3 {
+    background: green;
+}
+
+.stmts {
+    font-size: 9px;
+    line-height: 0px;
+}
+
+.done {
+    color: green;
+}
+
+.inProgress {
+    color: yellowgreen;
+}
+
+.toDo {
+    color: lightcoral;
+}
+
+.cntr {
+    margin: 0 auto;
+}
+
+.elements {
+    text-align: center;
+}
+
+.elements div {
+    display: inline-block;
+}
+
+#usrInvoice div {
+    display: block;
+}
+
+.list {
+    list-style: none;
+}
+
+.list {
+    display: flex;
+}
+
+.list a {
+    display: block;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.red {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.green {
+    background: rgba(0, 255, 0, 0.5);
+}
+#quant{
+    display: flex;
+    flex-direction: column;
+}
+#quant label{
+    width:185px;
+}
+#quant input{
+    width:50px;
+}
